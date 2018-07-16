@@ -1,6 +1,6 @@
 {
   "name": "unistore-weapp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "用于微信小程序的unistore绑定",
   "source": "src/index.js",
   "module": "dist/unistore-weapp.es.js",
