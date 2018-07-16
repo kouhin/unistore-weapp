@@ -24,9 +24,9 @@ export function connect(mapStateToData, actions) {
       pageObject.data || {}
     );
 
-    let boundActions = mapActions(
-      assign(assign({}, actions || {}), pageObject.actions || {}),
-      store
+    const boundActions = assign(
+      assign({}, mapActions(actions || {}, store)),
+      mapActions(pageObject.actions || {}, store)
     );
     function update(instance) {
       let mapped = mapStateToData(store ? store.getState() : {}, instance.data);
