@@ -1,0 +1,61 @@
+{
+  "name": "unistore-weapp",
+  "version": "1.0.0",
+  "description": "用于微信小程序的unistore绑定",
+  "source": "src/index.js",
+  "module": "dist/unistore-weapp.es.js",
+  "main": "dist/unistore-weapp.js",
+  "umd:main": "dist/unistore-weapp.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "test": "eslint src",
+    "prepare": "npm t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouhin/unistore-weapp.git"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "keywords": [
+    "unistore",
+    "weapp",
+    "wechat",
+    "redux",
+    "store",
+    "小程序",
+    "微信"
+  ],
+  "author": "Bin Hou <houbin217jz@gmail.com> (https://twitter.com/houbin217jz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kouhin/unistore-weapp/issues"
+  },
+  "homepage": "https://github.com/kouhin/unistore-weapp#readme",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "microbundle": "^0.5.1",
+    "prettier": "^1.13.7",
+    "unistore": "^3.0.6"
+  },
+  "peerDependencies": {
+    "unistore": "*"
+  }
+}
