@@ -71,8 +71,10 @@ const actions = (store) => ({
 Page(connect(mapStateToData, actions)({
   data: {
   },
+  actions: { // 定义在这里的action将覆盖传入connect的同名action
+  },
   doIncreament() {
-    this.increment();
+    this.actions.increment();
   }
 }));
 ```

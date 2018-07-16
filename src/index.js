@@ -24,7 +24,10 @@ export function connect(mapStateToData, actions) {
       pageObject.data || {}
     );
 
-    let boundActions = actions ? mapActions(actions, store) : { store };
+    let boundActions = mapActions(
+      assign(assign({}, actions || {}), pageObject.actions || {}),
+      store
+    );
     function update(instance) {
       let mapped = mapStateToData(store ? store.getState() : {}, instance.data);
       for (let i in mapped)
@@ -39,25 +42,23 @@ export function connect(mapStateToData, actions) {
         }
     }
 
-    return assign(
-      pageObject,
-      assign(assign({}, boundActions), {
-        data: assign(pageObject.data, data),
-        onLoad: function(options) {
-          if (typeof this.unsubscribe !== 'function') {
-            this.unsubscribe = store.subscribe(() => {
-              update(this);
-            });
-          }
-          onLoad.call(this, options);
-        },
-        onUnload: function() {
-          onUnload.call(this);
-          if (typeof this.unsubscribe === 'function') {
-            this.unsubscribe();
-          }
+    return assign(assign({}, pageObject), {
+      data: assign(pageObject.data, data),
+      actions: boundActions,
+      onLoad: function(options) {
+        if (typeof this.unsubscribe !== 'function') {
+          this.unsubscribe = store.subscribe(() => {
+            update(this);
+          });
         }
-      })
-    );
+        onLoad.call(this, options);
+      },
+      onUnload: function() {
+        onUnload.call(this);
+        if (typeof this.unsubscribe === 'function') {
+          this.unsubscribe();
+        }
+      }
+    });
   };
 }
